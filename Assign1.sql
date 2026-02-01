@@ -98,23 +98,6 @@ order by amount desc
 limit(1);
 
 --Count how many payments each customer has made.
-select amount, customer_id
-from payment
-order by amount desc;
-
---Retrieve customers who are active and sort them by first_name.
-select first_name, last_name, active
-from customer
-where active = '1'
-order by first_name;
-
-select * 
-from customer 
-where first_name ilike 'j%'
-order by last_name desc;
---offset 6
-
---Count how many payments each customer has made.
 select customer_id,
 COUNT(customer_id) as mem
 from payment
@@ -122,36 +105,9 @@ group by customer_id
 having COUNT(customer_id) > 39
 order by mem desc;
 
-select * 
-from customer;
-
-select * 
-from payment;
-
--- names of top 10 highest spenders
-select customer.customer_id, customer.first_name, customer.last_name, sum(payment.amount)
+--Retrieve customers who are active and sort them by first_name.
+select first_name, last_name, active
 from customer
-inner join payment
-on customer.customer_id = payment.customer_id
-group by customer.customer_id, customer.first_name, customer.last_name
-order by sum(payment.amount) desc
-limit (10);
+where active = '1'
+order by first_name;
 
--- names of top 10 highest spenders
-select cust.customer_id, cust.first_name, cust.last_name, sum(pay.amount) as totamount
-from customer as cust
-inner join payment as pay
-on cust.customer_id = pay.customer_id
-group by cust.customer_id, cust.first_name, cust.last_name
-order by totamount desc
-limit (10);
-
-select cust.customer_id, cust.first_name, cust.last_name, pay.amount, pay.customer_id
-from customer as cust
-full join payment as pay
-on cust.customer_id = pay.customer_id;
---group by cust.customer_id, cust.first_name, cust.last_name
---order by totamount desc
---limit (10);
-
---select * from customer
