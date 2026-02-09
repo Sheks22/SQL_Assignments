@@ -111,3 +111,4 @@ from customer
 where active = '1'
 order by first_name;
 
+-- Solomon said it will change
